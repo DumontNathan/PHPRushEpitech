@@ -131,5 +131,21 @@ function isCookie()
     return false;
 }
 
+function isAdmin()
+{
+    $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
+    $sql = "SELECT admin FROM users where email = ? AND admin = 1";
+    $sth = $conn->prepare($sql);
+    if(isSession())
+      $sth->bindParam(1, $_SESSION['email'], PDO::PARAM_STR);
+    elseif(isCookie())
+      $sth->bindParam(1, $_COOKIE['email'], PDO::PARAM_STR);
+    $sth->execute();
+    if($sth->rowCount() < 1)
+      return false;
+    else 
+      return true;
+}
+
 
 ?>

@@ -20,7 +20,7 @@
  <?php inscription(); ?>
 
  <div class="container">
-      <form method="post" action="">
+      <form method="post" action="" class="border border-blue p-5">
       <div class="form-group">
           <label for="username">Username</label>
           <input type="text" class="form-control" name="username" placeholder="Enter username" required>
