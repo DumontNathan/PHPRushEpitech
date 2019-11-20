@@ -1,16 +1,16 @@
 <?php
 
-Class Product
+class Product
 {
     private $name;
     private $price;
     private $id;
 
-    public function __construct($product)
+    public function __construct($produit = null)
     {
-        $this->name = $product['name'];
-        $this->price = $product['price'];
-        $this->id = $product['id'];
+        $this->name = $produit['name'] ? $produit['name'] : null;
+        $this->price = $produit['price'] ? $produit['price'] : null;
+        $this->id = $produit['id'] ? $produit['id'] : null;
     }
 
     public function getName()
@@ -21,6 +21,11 @@ Class Product
     public function getPrice()
     {
         return $this->price;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function setName($newName)
@@ -39,10 +44,12 @@ class Model
 {
     public function __construct(){}
 
-    public function addProduct($name, $price)
+    public function addProduct($product)
     {
+        $name = $product->getName();
+        $price = $product->getPrice();
         if($this->nameExists($name))
-        echo "Impossible : a product already have this name\n";
+            echo "This product already exists.";
         else
         {
             $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
@@ -51,10 +58,11 @@ class Model
             $sth->bindParam(':name', $name, PDO::PARAM_STR);
             $sth->bindParam(':price', $price, PDO::PARAM_INT);
             $sth->execute();
+            echo "Product added";
         }
     }
 
-    private function nameExists($name)
+    public function nameExists($name)
     {
         $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
         $sql = "SELECT name FROM products WHERE name = ?";
@@ -73,47 +81,100 @@ class Model
         $sql = "SELECT * FROM products WHERE id = ?";
         $sth = $conn->prepare($sql);
         $sth->bindParam(1, $id, PDO::PARAM_INT);
+        $sth->execute();
         $product = $sth->fetch(PDO::FETCH_ASSOC);
         return $product;
     }
 
+    public function getAllProducts()
+    {
+        $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
+        $sql = "SELECT * FROM products";
+        $sth = $conn->prepare($sql);
+        $sth->execute();
+        $products = $sth->fetch(PDO::FETCH_ASSOC);
+        return $products;
+    }
+
     public function updateProduct($product)
     {
-       $name = $product->name;
-       $price = $product->price;
-       $id = $product->id;
+       $name = $product->getName();
+       $price = $product->getPrice();
+       $id = $product->getId();
        $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
        $sql = "UPDATE products SET name = ?, price = ? WHERE id = ?";
        $sth = $conn->prepare($sql);
        $sth->bindParam(1, $name, PDO::PARAM_STR);
-       $sth->bindParam(2, $price, PDO::PARAM_STR);
+       $sth->bindParam(2, $price, PDO::PARAM_INT);
        $sth->bindParam(3, $id, PDO::PARAM_INT);
        $sth->execute();
     }
 
     public function deleteProduct($product)
     {
-       $id = $product->id;
+       $id = $product->getId();
        $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
-       $sql = "DELETE FROM products WHERE $id = ?";
+       $sql = "DELETE FROM products WHERE id = ?";
        $sth = $conn->prepare($sql);
        $sth->bindParam(1, $id, PDO::PARAM_INT);
        $sth->execute();
     }
-
 }
 
-class Humain extends Product
+function updateProduct($id, $newName, $newPrice)
 {
+    if(isset($id))
+    {
+     if(idExists($id))
+     {
+        if(!empty($newName) && empty($newPrice))
+        {
+            $model = new Model();
+            $productArray = $model->getProduct($id);
+            $product = new Product($productArray);
+            $product->setName($newName);
+            $model->updateProduct($product);
+            echo "Product modified";
+        }
+        elseif(!empty($newPrice) && empty($newName))
+        {
+            $model = new Model();
+            $productArray = $model->getProduct($id);
+            $product = new Product($productArray);
+            $product->setPrice($newPrice);
+            $model->updateProduct($product);
+            echo "Product modified";
+        }
+        elseif(!empty($newName) && !empty($newPrice))
+        { 
+            $model = new Model();
+            $productArray = $model->getProduct($id);
+            $product = new Product($productArray);
+            $product->setName($newName);
+            $product->setPrice($newPrice);
+            $model->updateProduct($product);
+            echo "Product modified";
+        }
+        else
+            echo "You must fill at least one field.\n";
+     }
+     else
+        echo "This id does not exists.\n";
     
+    }
 }
 
-$billy = new Humain('Billy', 5000);
-$billy2 = new Humain('Billy', 4);
-
-$billy->addProduct();
-$billy2->addProduct();
-
-
+function idExists($id)
+{
+  $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
+  $sql = "SELECT id FROM users where id = ?";
+  $sth = $conn->prepare($sql);
+  $sth->bindParam(1, $id, PDO::PARAM_STR);
+  $sth->execute();
+  if($sth->rowCount() < 1)
+    return false;
+  else 
+    return true;
+}
 
 ?>

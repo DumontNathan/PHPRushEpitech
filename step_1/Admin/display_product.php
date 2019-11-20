@@ -1,9 +1,8 @@
 <!doctype html>
 
 <html lang="en">
-<?php require_once 'step_1.php';
-      require_once 'adminUser.php';
-?>
+<?php require_once 'step_1.php'; 
+      require_once 'adminProduct.php';?>
 
   <head>
   
@@ -34,37 +33,19 @@
 
 
  <div class="container">
-      <form method="post" action="" class="border border-blue p-5">
-      <div class="form-group">
-        <h3>Choose the user</h3>
-          <label for="login">Username</label>
-          <input type="text" class="form-control" name="login" placeholder="Enter username" required>
-      </div>
-      <br>
-      <h3>Edit user</h3>
-      <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" placeholder="Enter username">
-      </div>
-      <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-      </div>
-      <div class="form-group">
-          <label for="password">New password</label>
-          <input type="password" class="form-control" name="password" placeholder="Enter new password">
-      </div>
-      <div class="form-group">
-          <label for="password_confirmation">Password confirmation</label>
-          <input type="password" class="form-control" name="password_confirmation" placeholder="Enter password again">
-      </div>
-      <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" name="SetAdmin">
-            <label class="form-check-label" for="SetAdmin">Set admin privileges</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <?php edit_user(); ?>
-      </form>
+      
+            <?php 
+            
+            $model = new Model();
+            $array = getAllProducts();
+                    {
+                        ?>
+                        <p>Name : <?= $array["name"]?><br>
+                        Email : <?= $array["price"]?><br>
+                        Id: <?= $array["id"]?><br></p>
+            <?php
+                    } 
+            ?>
   </div>
 
     <!-- Optional JavaScript -->

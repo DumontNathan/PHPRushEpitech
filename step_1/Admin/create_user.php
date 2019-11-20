@@ -14,24 +14,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/inscription.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
+    <link href="../css/inscription.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Le groupe de merde</title>
   </head>
 
   <body>
 
-    <div class="w3-sidebar w3-blue w3-bar-block" id="sidenav">
-        <h3 class="w3-bar-item">Menu</h3>
+  <div class="w3-sidebar w3-blue w3-bar-block" id="sidenav">
+        <a href="../index.php"><h3 class="w3-bar-item">Index</h3>
         <a href="create_user.php" class="w3-bar-item w3-button">Create user</a>
         <a href="edit_user.php" class="w3-bar-item w3-button">Edit user</a>
-        <a href="#" class="w3-bar-item w3-button">Display user</a>
+        <a href="display_user.php" class="w3-bar-item w3-button">Display user</a>
         <a href="delete_user.php" class="w3-bar-item w3-button">Delete user</a>
-        <a href="#" class="w3-bar-item w3-button">Add product</a>
-        <a href="#" class="w3-bar-item w3-button">Edit product</a>
-        <a href="#" class="w3-bar-item w3-button">Display product</a>
-        <a href="#" class="w3-bar-item w3-button">Delete product</a>
+        <a href="add_product.php" class="w3-bar-item w3-button">Add product</a>
+        <a href="edit_product.php" class="w3-bar-item w3-button">Edit product</a>
+        <a href="display_product.php" class="w3-bar-item w3-button">Display product</a>
+        <a href="delete_product.php" class="w3-bar-item w3-button">Delete product</a>
     </div>
 
  <div class="container">

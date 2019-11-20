@@ -18,16 +18,16 @@
 
   <body>
 
-    <div class="w3-sidebar w3-blue w3-bar-block" id="sidenav">
-        <h3 class="w3-bar-item">Menu</h3>
+  <div class="w3-sidebar w3-blue w3-bar-block" id="sidenav">
+        <a href="index.php"><h3 class="w3-bar-item">Index</h3>
         <a href="Admin/create_user.php" class="w3-bar-item w3-button">Create user</a>
         <a href="Admin/edit_user.php" class="w3-bar-item w3-button">Edit user</a>
         <a href="Admin/display_user.php" class="w3-bar-item w3-button">Display user</a>
         <a href="Admin/delete_user.php" class="w3-bar-item w3-button">Delete user</a>
-        <a href="#" class="w3-bar-item w3-button">Add product</a>
-        <a href="#" class="w3-bar-item w3-button">Edit product</a>
-        <a href="#" class="w3-bar-item w3-button">Display product</a>
-        <a href="#" class="w3-bar-item w3-button">Delete product</a>
+        <a href="Admin/add_product.php" class="w3-bar-item w3-button">Add product</a>
+        <a href="Admin/edit_product.php" class="w3-bar-item w3-button">Edit product</a>
+        <a href="Admin/display_product.php" class="w3-bar-item w3-button">Display product</a>
+        <a href="Admin/delete_product.php" class="w3-bar-item w3-button">Delete product</a>
     </div>
    
     <!-- Optional JavaScript -->

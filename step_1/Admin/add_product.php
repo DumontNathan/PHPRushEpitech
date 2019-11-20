@@ -1,9 +1,11 @@
 <!doctype html>
 
+
 <html lang="en">
-<?php require_once 'step_1.php';
-      require_once 'adminUser.php';
-?>
+
+<?php require_once 'step_1.php'; 
+      require_once 'adminProduct.php';?>
+      
 
   <head>
   
@@ -21,7 +23,7 @@
   <body>
 
   <div class="w3-sidebar w3-blue w3-bar-block" id="sidenav">
-        <a href="../index.php"><h3 class="w3-bar-item">Index</h3>
+        <a href="../index.php"><h3 class="w3-bar-item"> Index</h3>
         <a href="create_user.php" class="w3-bar-item w3-button">Create user</a>
         <a href="edit_user.php" class="w3-bar-item w3-button">Edit user</a>
         <a href="display_user.php" class="w3-bar-item w3-button">Display user</a>
@@ -32,38 +34,25 @@
         <a href="delete_product.php" class="w3-bar-item w3-button">Delete product</a>
     </div>
 
-
- <div class="container">
+    <div class="container">
       <form method="post" action="" class="border border-blue p-5">
       <div class="form-group">
-        <h3>Choose the user</h3>
-          <label for="login">Username</label>
-          <input type="text" class="form-control" name="login" placeholder="Enter username" required>
-      </div>
-      <br>
-      <h3>Edit user</h3>
-      <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" placeholder="Enter username">
+          <label for="name">Product name</label>
+          <input type="text" class="form-control" name="name" placeholder="Enter name" required>
       </div>
       <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
+          <label for="price">Price (€)</label>
+          <input type="text" class="form-control" name="price" placeholder="Enter price" required>
       </div>
-      <div class="form-group">
-          <label for="password">New password</label>
-          <input type="password" class="form-control" name="password" placeholder="Enter new password">
-      </div>
-      <div class="form-group">
-          <label for="password_confirmation">Password confirmation</label>
-          <input type="password" class="form-control" name="password_confirmation" placeholder="Enter password again">
-      </div>
-      <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" name="SetAdmin">
-            <label class="form-check-label" for="SetAdmin">Set admin privileges</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <?php edit_user(); ?>
+      <button type="submit" class="btn btn-primary">Add</button>
+       <?php
+       if(isset($_POST['name']) && isset($_POST['price']))
+            $model = new Model();
+            $product = new Product();
+            $product->setName($_POST['name']);
+            $product->setPrice($_POST['price']);
+            $model->addProduct($product);
+       ?>
       </form>
   </div>
 

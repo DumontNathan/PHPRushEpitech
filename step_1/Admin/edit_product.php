@@ -1,9 +1,11 @@
 <!doctype html>
 
+
 <html lang="en">
-<?php require_once 'step_1.php';
-      require_once 'adminUser.php';
-?>
+
+<?php require_once 'step_1.php'; 
+      require_once 'adminProduct.php';?>
+      
 
   <head>
   
@@ -32,39 +34,29 @@
         <a href="delete_product.php" class="w3-bar-item w3-button">Delete product</a>
     </div>
 
-
- <div class="container">
+    <div class="container">
+      
       <form method="post" action="" class="border border-blue p-5">
+      <h3>Choose the product</h3>
+      <br>
       <div class="form-group">
-        <h3>Choose the user</h3>
-          <label for="login">Username</label>
-          <input type="text" class="form-control" name="login" placeholder="Enter username" required>
+          <label for="id">Choose by ID</label>
+          <input type="number" class="form-control" name="id" min="0" required>
+          <small class="form-text text-muted">If you don't know the ID, go <a href="display_product.php">here.</a></small>
       </div>
       <br>
-      <h3>Edit user</h3>
+      <h3>Edit the product</h3>
+      <br>
       <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username" placeholder="Enter username">
+          <label for="name">New product name</label>
+          <input type="text" class="form-control" name="new_name" placeholder="Enter new product name">
+          <label for="new_price">New product price</label>
+          <input type="number" class="form-control" name="new_price" placeholder="Enter new product price">
       </div>
-      <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Enter email">
-      </div>
-      <div class="form-group">
-          <label for="password">New password</label>
-          <input type="password" class="form-control" name="password" placeholder="Enter new password">
-      </div>
-      <div class="form-group">
-          <label for="password_confirmation">Password confirmation</label>
-          <input type="password" class="form-control" name="password_confirmation" placeholder="Enter password again">
-      </div>
-      <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" name="SetAdmin">
-            <label class="form-check-label" for="SetAdmin">Set admin privileges</label>
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-      <?php edit_user(); ?>
+      <button type="submit" class="btn btn-primary">Edit</button>
+      <?php updateProduct($_POST['id'], $_POST['new_name'], $_POST['new_price']);?>
       </form>
+      
   </div>
 
     <!-- Optional JavaScript -->

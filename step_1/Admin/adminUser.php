@@ -7,6 +7,7 @@ function edit_user()
     $loginname = $_POST["login"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
     $id = getUserId($loginname);
+    $admin = 0;
  
     if(isset($_POST["login"]))
     {
@@ -64,6 +65,17 @@ function edit_user()
             echo "Password modified";
           }
       }
+      if(!empty($_POST["SetAdmin"]))
+      {
+        $admin = 1;
+        $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
+        $sql = "UPDATE users SET admin = ? where id = ?";
+        $sth = $conn->prepare($sql);
+        $sth->bindParam(1, $admin, PDO::PARAM_INT);
+        $sth->bindParam(2, $id, PDO::PARAM_INT);
+        $sth->execute();
+        echo "Admin privileges added.";
+      }
   } 
 }
 
@@ -108,7 +120,7 @@ function create_user()
       $sth->bindParam(':username', $username, PDO::PARAM_STR);
       $sth->bindParam(':email', $email, PDO::PARAM_STR);
       $sth->bindParam(':password', $password, PDO::PARAM_STR);
-      $sth->bindParam(':admin', $admin, PDO::PARAM_STR);
+      $sth->bindParam(':admin', $admin, PDO::PARAM_INT);
       $sth->execute();
       if($admin == 0)
         echo "User created";
