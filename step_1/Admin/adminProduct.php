@@ -92,7 +92,7 @@ class Model
         $sql = "SELECT * FROM products";
         $sth = $conn->prepare($sql);
         $sth->execute();
-        $products = $sth->fetch(PDO::FETCH_ASSOC);
+        $products = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $products;
     }
 
@@ -110,15 +110,34 @@ class Model
        $sth->execute();
     }
 
-    public function deleteProduct($product)
+    public function deleteProduct($id)
     {
-       $id = $product->getId();
        $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
        $sql = "DELETE FROM products WHERE id = ?";
        $sth = $conn->prepare($sql);
        $sth->bindParam(1, $id, PDO::PARAM_INT);
        $sth->execute();
     }
+}
+
+function deleteProduct($id)
+{
+    $delete = 0;
+    
+    if (!empty($_POST["Delete"]))
+        $delete = 1;
+    elseif (empty($_POST["Delete"]) && isset($id))
+        echo "Please confirm your action\n";
+    
+    if(!empty($id) && $delete ==1)
+    if(idExists($id))
+    {
+        $model = new Model();
+        $model->deleteProduct($id);
+        echo "Product deleted";
+    }
+    else
+     echo "This ID does not exist.\n";
 }
 
 function updateProduct($id, $newName, $newPrice)
@@ -167,7 +186,7 @@ function updateProduct($id, $newName, $newPrice)
 function idExists($id)
 {
   $conn = new PDO("mysql:host=localhost;port=3306;dbname=pool_php_rush", 'root', "Bonjourmysql31200!");
-  $sql = "SELECT id FROM users where id = ?";
+  $sql = "SELECT id FROM products where id = ?";
   $sth = $conn->prepare($sql);
   $sth->bindParam(1, $id, PDO::PARAM_STR);
   $sth->execute();
@@ -176,5 +195,4 @@ function idExists($id)
   else 
     return true;
 }
-
 ?>

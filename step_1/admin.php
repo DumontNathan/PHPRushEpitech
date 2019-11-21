@@ -11,25 +11,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="css/admin.css" rel="stylesheet">
+    <link href="css/inscription.css" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Le groupe de merde</title>
   </head>
 
   <body>
 
-  <div class="w3-sidebar w3-blue w3-bar-block" id="sidenav">
-        <a href="index.php"><h3 class="w3-bar-item">Index</h3>
-        <a href="Admin/create_user.php" class="w3-bar-item w3-button">Create user</a>
-        <a href="Admin/edit_user.php" class="w3-bar-item w3-button">Edit user</a>
-        <a href="Admin/display_user.php" class="w3-bar-item w3-button">Display user</a>
-        <a href="Admin/delete_user.php" class="w3-bar-item w3-button">Delete user</a>
-        <a href="Admin/add_product.php" class="w3-bar-item w3-button">Add product</a>
-        <a href="Admin/edit_product.php" class="w3-bar-item w3-button">Edit product</a>
-        <a href="Admin/display_product.php" class="w3-bar-item w3-button">Display product</a>
-        <a href="Admin/delete_product.php" class="w3-bar-item w3-button">Delete product</a>
+
+  <div navbar>
+  <!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+  <!-- Navbar brand -->
+  <a class="navbar-brand" href="index.php"><img class="img" src="img/Good-Morning-Paris.png"></a>
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse">
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.php">Home
+        </a>
+      </li>
+      <!-- Dropdown -->
+      <li class="nav-item dropdown multi-level-dropdown">
+        <a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle">Products</a>
+        <ul class="dropdown-menu">
+          <li class="dropdown-item p-1">
+            <a href="#" class="dropdown">Product 1</a>
+          </li>
+          <li class="dropdown-item p-1">
+            <a href="#" class="dropdown">Product 2</a>
+          </li>
+          <li class="dropdown-item p-1">
+            <a href="#" class="dropdown">Product 3</a>
+          </li>
+          <li class="dropdown-item p-1">
+            <a href="#" class="dropdown">Product 4</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <p class="hello"><?php sayHello(); echo " !";?></p>
+    <a class="btn btn-secondary" href="logout.php">Logout</a>
+    <?php if(isAdmin())
+        {
+        ?> 
+        <a class="btn btn-secondary" href="admin.php">Admin</a>
+      
+        <?php 
+        } 
+          ?>
+
+  </div>
+  <!-- Collapsible content -->
+</nav>
+<!--/.Navbar-->
+</div>
+
+
+    <div class="big-container">
+
+        <div class="w3-sidebar w3-bar-block" id="sidenav">
+            <a href="admin.php"><h3 class="w3-bar-item">Admin</h3>
+            <a href="Admin/create_user.php" class="w3-bar-item w3-button">Create user</a>
+            <a href="Admin/edit_user.php" class="w3-bar-item w3-button">Edit user</a>
+            <a href="Admin/display_user.php" class="w3-bar-item w3-button">Display user</a>
+            <a href="Admin/delete_user.php" class="w3-bar-item w3-button">Delete user</a>
+            <a href="Admin/add_product.php" class="w3-bar-item w3-button">Add product</a>
+            <a href="Admin/edit_product.php" class="w3-bar-item w3-button">Edit product</a>
+            <a href="Admin/delete_product.php" class="w3-bar-item w3-button">Delete product</a>
+        </div>
     </div>
-   
+
+
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

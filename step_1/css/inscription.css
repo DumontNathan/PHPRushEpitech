@@ -1,5 +1,102 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+body
+{
+    background-color: rgba(241, 227, 196, 0.1);
+    font-family: 'Source Sans Pro', sans-serif;
+
+}
+
+.big-container
+{
+    display: flex;
+}
+
 .container
 {
     display: flex;
     justify-content: center;
+    margin-top: 5%;
+}
+
+.navbar
+{
+    background-color:#59698d;
+    color: #ffffff;
+}
+
+.img 
+{
+	max-width: 20%;
+	height: auto;
+}
+
+.dropdown-menu
+{
+    background-color :#929fba; 
+}
+
+.dropdown
+{
+    color : white;
+}
+
+#search
+{
+    width : 100%;
+}
+
+
+.hello
+{
+    margin-right: 25px;
+    margin-bottom: 0px;
+}
+
+#sidenav
+{
+    width: 15%;
+    background-color: #D0D6E2;
+}
+
+.btn
+{
+    background-color:#59698d;
+}
+
+.page-footer
+{
+  background-color: #59698d;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  color: white;
+  text-align: center;
+}
+
+.price
+{
+    text-align: center;
+    font-weight: bold;
+    color: #59698d;
+    font-style: italic;
+}
+
+.card-title
+{
+    text-align: center;
+    font-weight: bold;
+    color: #59698d;
+}
+
+.card-deck
+{
+    margin : 20px;
+}
+
+.md-form my-0
+{
+    margin-left: 5px;
 }
